@@ -17,15 +17,27 @@ player_x_change = 0
 
 invader_img = pygame.image.load('invader.png')
 invader_x = random.randint(0, 726)
-invader_y = random.randint(20, 400)
+invader_y = random.randint(20, 200)
 invader_x_change = 0.1
 invader_y_change = 50
+
+bullet_img = pygame.image.load('bullet.png')
+bullet_x = 0
+bullet_y = 526
+bullet_x_change = 0
+bullet_y_change = 0.3
+bullet_visible = False
 
 def player(x, y):
     screen.blit(player_img, (x, y))
 
 def invader(x, y):
     screen.blit(invader_img, (x, y))
+
+def shoot(x, y):
+    global bullet_visible
+    bullet_visible = True
+    screen.blit(bullet_img, (x + 16, y + 10))
 
 running = True
 while running:
@@ -41,6 +53,8 @@ while running:
                 player_x_change = -0.2
             if event.key == pygame.K_RIGHT:
                 player_x_change = 0.2
+            if event.key == pygame.K_SPACE:
+                shoot(player_x, bullet_y)
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -61,6 +75,10 @@ while running:
     elif invader_x >= 726:
         invader_x_change = -0.1
         invader_y += invader_y_change
+
+    if bullet_visible:
+        shoot(player_x, bullet_y)
+        bullet_y -= bullet_y_change
 
     player(player_x, player_y)
     invader(invader_x, invader_y)
