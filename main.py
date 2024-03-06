@@ -38,7 +38,7 @@ bullet_y_change = 1
 bullet_visible = False
 
 score = 0
-font = pygame.font.Font('freesansbold.ttf', 32)
+font = pygame.font.Font('Faster.otf', 32)
 text_x = 10
 text_y = 10
 
