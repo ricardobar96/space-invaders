@@ -8,13 +8,14 @@ screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption('Space Invaders, by Ricardo Baloira')
 icon = pygame.image.load('icon.png')
 pygame.display.set_icon(icon)
+background = pygame.image.load('background.jpg')
 
 player_img = pygame.image.load('player.png')
 player_x = 368
 player_y = 526
 player_x_change = 0
 
-invader_img = pygame.image.load('icon.png')
+invader_img = pygame.image.load('invader.png')
 invader_x = random.randint(0, 726)
 invader_y = random.randint(20, 400)
 invader_x_change = 0.1
@@ -29,7 +30,7 @@ def invader(x, y):
 running = True
 while running:
 
-    screen.fill((98, 186, 89))
+    screen.blit(background, (-100, -200))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
