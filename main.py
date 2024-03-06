@@ -16,11 +16,19 @@ player_x = 368
 player_y = 526
 player_x_change = 0
 
-invader_img = pygame.image.load('invader.png')
-invader_x = random.randint(0, 726)
-invader_y = random.randint(20, 200)
-invader_x_change = 0.3
-invader_y_change = 50
+invader_img = []
+invader_x = []
+invader_y = []
+invader_x_change = []
+invader_y_change = []
+number_invaders = 6
+
+for i in range(number_invaders):
+    invader_img.append(pygame.image.load('invader.png'))
+    invader_x.append(random.randint(0, 726))
+    invader_y.append(random.randint(20, 200))
+    invader_x_change.append(0.3)
+    invader_y_change.append(50)
 
 bullet_img = pygame.image.load('bullet.png')
 bullet_x = 0
@@ -34,8 +42,8 @@ score = 0
 def player(x, y):
     screen.blit(player_img, (x, y))
 
-def invader(x, y):
-    screen.blit(invader_img, (x, y))
+def invader(x, y, inv):
+    screen.blit(invader_img[inv], (x, y))
 
 def shoot(x, y):
     global bullet_visible
@@ -79,14 +87,23 @@ while running:
     elif player_x >= 726:
         player_x = 726
 
-    invader_x += invader_x_change
+    for i in range(number_invaders):
+        invader_x[i] += invader_x_change[i]
+        if invader_x[i] <= 10:
+            invader_x_change[i] = 0.3
+            invader_y[i] += invader_y_change[i]
+        elif invader_x[i] >= 726:
+            invader_x_change[i] = -0.3
+            invader_y[i] += invader_y_change[i]
+        collision = hit(invader_x[i], invader_y[i], bullet_x, bullet_y)
+        if collision:
+            bullet_y = 526
+            bullet_visible = False
+            score += 10
+            invader_x[i] = random.randint(0, 726)
+            invader_y[i] = random.randint(20, 200)
 
-    if invader_x <= 10:
-        invader_x_change = 0.3
-        invader_y += invader_y_change
-    elif invader_x >= 726:
-        invader_x_change = -0.3
-        invader_y += invader_y_change
+        invader(invader_x[i], invader_y[i], i)
 
     if bullet_y <= 64:
         bullet_y = 526
@@ -96,15 +113,6 @@ while running:
         shoot(bullet_x, bullet_y)
         bullet_y -= bullet_y_change
 
-    collision = hit(invader_x, invader_y, bullet_x, bullet_y)
-    if collision:
-        bullet_y = 526
-        bullet_visible = False
-        score += 10
-        invader_x = random.randint(0, 726)
-        invader_y = random.randint(20, 200)
-
     player(player_x, player_y)
-    invader(invader_x, invader_y)
 
     pygame.display.update()
