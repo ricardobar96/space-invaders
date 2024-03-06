@@ -37,7 +37,7 @@ def invader(x, y):
 def shoot(x, y):
     global bullet_visible
     bullet_visible = True
-    screen.blit(bullet_img, (x + 16, y + 10))
+    screen.blit(bullet_img, (x + 14, y + 10))
 
 running = True
 while running:
@@ -54,7 +54,8 @@ while running:
             if event.key == pygame.K_RIGHT:
                 player_x_change = 0.5
             if event.key == pygame.K_SPACE:
-                shoot(player_x, bullet_y)
+                bullet_x = player_x
+                shoot(bullet_x, bullet_y)
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -81,7 +82,7 @@ while running:
         bullet_visible = False
 
     if bullet_visible:
-        shoot(player_x, bullet_y)
+        shoot(bullet_x, bullet_y)
         bullet_y -= bullet_y_change
 
     player(player_x, player_y)
