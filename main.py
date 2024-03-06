@@ -1,5 +1,6 @@
 import pygame
 import random
+import math
 
 pygame.init()
 
@@ -28,6 +29,8 @@ bullet_x_change = 0
 bullet_y_change = 1
 bullet_visible = False
 
+score = 0
+
 def player(x, y):
     screen.blit(player_img, (x, y))
 
@@ -38,6 +41,13 @@ def shoot(x, y):
     global bullet_visible
     bullet_visible = True
     screen.blit(bullet_img, (x + 14, y + 10))
+
+def hit(x_1, x_2, y_1, y_2):
+    distance = math.sqrt(math.pow(x_1 - x_2, 2) + math.pow(y_2 - y_1, 2))
+    if distance < 27:
+        return True
+    else:
+        return False
 
 running = True
 while running:
@@ -54,8 +64,9 @@ while running:
             if event.key == pygame.K_RIGHT:
                 player_x_change = 0.5
             if event.key == pygame.K_SPACE:
-                bullet_x = player_x
-                shoot(bullet_x, bullet_y)
+                if not bullet_visible:
+                    bullet_x = player_x
+                    shoot(bullet_x, bullet_y)
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -84,6 +95,14 @@ while running:
     if bullet_visible:
         shoot(bullet_x, bullet_y)
         bullet_y -= bullet_y_change
+
+    collision = hit(invader_x, invader_y, bullet_x, bullet_y)
+    if collision:
+        bullet_y = 526
+        bullet_visible = False
+        score += 10
+        invader_x = random.randint(0, 726)
+        invader_y = random.randint(20, 200)
 
     player(player_x, player_y)
     invader(invader_x, invader_y)
