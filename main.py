@@ -13,8 +13,16 @@ player_x = 368
 player_y = 526
 player_x_change = 0
 
+invader_img = pygame.image.load('icon.png')
+invader_x = 368
+invader_y = 100
+invader_x_change = 0
+
 def player(x, y):
-    screen.blit(player_img, (player_x, player_y))
+    screen.blit(player_img, (x, y))
+
+def invader(x, y):
+    screen.blit(invader_img, (x, y))
 
 running = True
 while running:
@@ -36,11 +44,13 @@ while running:
                 player_x_change = 0
 
     player_x += player_x_change
-    player(player_x, player_y)
 
     if player_x <= 10:
         player_x = 10
     elif player_x >= 726:
         player_x = 726
+
+    player(player_x, player_y)
+    invader(invader_x, invader_y)
 
     pygame.display.update()
