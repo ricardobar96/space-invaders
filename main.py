@@ -11,8 +11,9 @@ pygame.display.set_icon(icon)
 player_img = pygame.image.load('player.png')
 player_x = 368
 player_y = 526
+player_x_change = 0
 
-def player():
+def player(x, y):
     screen.blit(player_img, (player_x, player_y))
 
 running = True
@@ -24,6 +25,17 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    player()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                player_x_change = -0.2
+            if event.key == pygame.K_RIGHT:
+                player_x_change = 0.2
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                player_x_change = 0
+
+    player_x += player_x_change
+    player(player_x, player_y)
 
     pygame.display.update()
