@@ -18,14 +18,14 @@ player_x_change = 0
 invader_img = pygame.image.load('invader.png')
 invader_x = random.randint(0, 726)
 invader_y = random.randint(20, 200)
-invader_x_change = 0.1
+invader_x_change = 0.3
 invader_y_change = 50
 
 bullet_img = pygame.image.load('bullet.png')
 bullet_x = 0
 bullet_y = 526
 bullet_x_change = 0
-bullet_y_change = 0.3
+bullet_y_change = 1
 bullet_visible = False
 
 def player(x, y):
@@ -50,9 +50,9 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                player_x_change = -0.2
+                player_x_change = -0.5
             if event.key == pygame.K_RIGHT:
-                player_x_change = 0.2
+                player_x_change = 0.5
             if event.key == pygame.K_SPACE:
                 shoot(player_x, bullet_y)
 
@@ -70,11 +70,15 @@ while running:
     invader_x += invader_x_change
 
     if invader_x <= 10:
-        invader_x_change = 0.1
+        invader_x_change = 0.3
         invader_y += invader_y_change
     elif invader_x >= 726:
-        invader_x_change = -0.1
+        invader_x_change = -0.3
         invader_y += invader_y_change
+
+    if bullet_y <= 64:
+        bullet_y = 526
+        bullet_visible = False
 
     if bullet_visible:
         shoot(player_x, bullet_y)
