@@ -1,6 +1,7 @@
 import pygame
 import random
 import math
+from pygame import mixer
 
 pygame.init()
 
@@ -10,6 +11,9 @@ pygame.display.set_caption('Space Invaders, by Ricardo Baloira')
 icon = pygame.image.load('icon.png')
 pygame.display.set_icon(icon)
 background = pygame.image.load('background.jpg')
+
+mixer.music.load('Breakdown_Full.mp3')
+mixer.music.play(-1)
 
 player_img = pygame.image.load('player.png')
 player_x = 368
