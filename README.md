@@ -10,7 +10,7 @@
 
 ## Features
 
-* **Write journal entries:** Create and delete entries at will.
+* **A:** A
 <br>
 
 ## Screenshots
