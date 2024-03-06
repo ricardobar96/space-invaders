@@ -17,7 +17,8 @@ player_x_change = 0
 invader_img = pygame.image.load('icon.png')
 invader_x = random.randint(0, 726)
 invader_y = random.randint(20, 400)
-invader_x_change = 0
+invader_x_change = 0.1
+invader_y_change = 50
 
 def player(x, y):
     screen.blit(player_img, (x, y))
@@ -50,6 +51,15 @@ while running:
         player_x = 10
     elif player_x >= 726:
         player_x = 726
+
+    invader_x += invader_x_change
+
+    if invader_x <= 10:
+        invader_x_change = 0.1
+        invader_y += invader_y_change
+    elif invader_x >= 726:
+        invader_x_change = -0.1
+        invader_y += invader_y_change
 
     player(player_x, player_y)
     invader(invader_x, invader_y)
