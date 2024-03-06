@@ -1,4 +1,5 @@
 import pygame
+import random
 
 pygame.init()
 
@@ -14,8 +15,8 @@ player_y = 526
 player_x_change = 0
 
 invader_img = pygame.image.load('icon.png')
-invader_x = 368
-invader_y = 100
+invader_x = random.randint(0, 726)
+invader_y = random.randint(20, 400)
 invader_x_change = 0
 
 def player(x, y):
