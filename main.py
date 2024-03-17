@@ -8,14 +8,14 @@ pygame.init()
 screen = pygame.display.set_mode((800, 600))
 
 pygame.display.set_caption('Space Invaders, by Ricardo Baloira')
-icon = pygame.image.load('icon.png')
+icon = pygame.image.load('images/icon.png')
 pygame.display.set_icon(icon)
-background = pygame.image.load('background.jpg')
+background = pygame.image.load('images/background.jpg')
 
-mixer.music.load('Breakdown_Full.mp3')
+mixer.music.load('sound/Breakdown_Full.mp3')
 mixer.music.play(-1)
 
-player_img = pygame.image.load('player.png')
+player_img = pygame.image.load('images/player.png')
 player_x = 368
 player_y = 526
 player_x_change = 0
@@ -28,13 +28,13 @@ invader_y_change = []
 number_invaders = 6
 
 for i in range(number_invaders):
-    invader_img.append(pygame.image.load('invader.png'))
+    invader_img.append(pygame.image.load('images/invader.png'))
     invader_x.append(random.randint(0, 726))
     invader_y.append(random.randint(20, 200))
     invader_x_change.append(0.3)
     invader_y_change.append(50)
 
-bullet_img = pygame.image.load('bullet.png')
+bullet_img = pygame.image.load('images/bullet.png')
 bullet_x = 0
 bullet_y = 526
 bullet_x_change = 0
@@ -42,7 +42,7 @@ bullet_y_change = 1
 bullet_visible = False
 
 score = 0
-font = pygame.font.Font('Faster.otf', 32)
+font = pygame.font.Font('font/Faster.otf', 32)
 text_x = 10
 text_y = 10
 
