@@ -84,6 +84,8 @@ while running:
             if event.key == pygame.K_RIGHT:
                 player_x_change = 0.5
             if event.key == pygame.K_SPACE:
+                bullet_sound = mixer.Sound('sound/shoot.wav')
+                bullet_sound.play()
                 if not bullet_visible:
                     bullet_x = player_x
                     shoot(bullet_x, bullet_y)
