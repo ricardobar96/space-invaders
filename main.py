@@ -13,6 +13,7 @@ pygame.display.set_icon(icon)
 background = pygame.image.load('images/background.jpg')
 
 mixer.music.load('sound/Breakdown_Full.mp3')
+mixer.music.set_volume(0.2)
 mixer.music.play(-1)
 
 player_img = pygame.image.load('images/player.png')
