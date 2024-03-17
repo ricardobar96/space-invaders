@@ -111,6 +111,8 @@ while running:
             invader_y[i] += invader_y_change[i]
         collision = hit(invader_x[i], invader_y[i], bullet_x, bullet_y)
         if collision:
+            invader_sound = mixer.Sound('sound/hit.wav')
+            invader_sound.play()
             bullet_y = 526
             bullet_visible = False
             score += 10
