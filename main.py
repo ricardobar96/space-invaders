@@ -47,6 +47,12 @@ font = pygame.font.Font('font/Faster.otf', 32)
 text_x = 10
 text_y = 10
 
+end_font = pygame.font.Font('font/Faster.otf', 52)
+
+def end_text():
+    final_text = end_font.render("GAME OVER", True, (255, 255, 255))
+    screen.blit(final_text, (230, 200))
+
 def show_score(x, y):
     text = font.render(f'Score: {score}', True, (255, 255, 255))
     screen.blit(text, (x, y))
@@ -102,6 +108,13 @@ while running:
         player_x = 726
 
     for i in range(number_invaders):
+
+        if invader_y[i] > 500:
+            for e in range(number_invaders):
+                invader_y[e] = 1000
+            end_text()
+            break
+
         invader_x[i] += invader_x_change[i]
         if invader_x[i] <= 10:
             invader_x_change[i] = 0.1
