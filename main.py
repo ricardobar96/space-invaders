@@ -32,7 +32,7 @@ for i in range(number_invaders):
     invader_img.append(pygame.image.load('images/invader.png'))
     invader_x.append(random.randint(0, 726))
     invader_y.append(random.randint(20, 200))
-    invader_x_change.append(0.3)
+    invader_x_change.append(0.1)
     invader_y_change.append(50)
 
 bullet_img = pygame.image.load('images/bullet.png')
@@ -104,10 +104,10 @@ while running:
     for i in range(number_invaders):
         invader_x[i] += invader_x_change[i]
         if invader_x[i] <= 10:
-            invader_x_change[i] = 0.3
+            invader_x_change[i] = 0.1
             invader_y[i] += invader_y_change[i]
         elif invader_x[i] >= 726:
-            invader_x_change[i] = -0.3
+            invader_x_change[i] = -0.1
             invader_y[i] += invader_y_change[i]
         collision = hit(invader_x[i], invader_y[i], bullet_x, bullet_y)
         if collision:
