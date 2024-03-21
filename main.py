@@ -35,6 +35,7 @@ for i in range(number_invaders):
     invader_x_change.append(0.1)
     invader_y_change.append(50)
 
+bullets = []
 bullet_img = pygame.image.load('images/bullet.png')
 bullet_x = 0
 bullet_y = 526
@@ -92,6 +93,12 @@ while running:
             if event.key == pygame.K_SPACE:
                 bullet_sound = mixer.Sound('sound/shoot.wav')
                 bullet_sound.play()
+                new_bullet = {
+                    "x": player_x,
+                    "y": player_y,
+                    "speed": -1
+                }
+                bullets.append(new_bullet)
                 if not bullet_visible:
                     bullet_x = player_x
                     shoot(bullet_x, bullet_y)
@@ -122,17 +129,26 @@ while running:
         elif invader_x[i] >= 726:
             invader_x_change[i] = -0.1
             invader_y[i] += invader_y_change[i]
-        collision = hit(invader_x[i], invader_y[i], bullet_x, bullet_y)
-        if collision:
-            invader_sound = mixer.Sound('sound/hit.wav')
-            invader_sound.play()
-            bullet_y = 526
-            bullet_visible = False
-            score += 10
-            invader_x[i] = random.randint(0, 726)
-            invader_y[i] = random.randint(20, 200)
+        for bullet in bullets:
+            collision_bullet_invader = hit(invader_x[i], invader_y[i], bullet["x"], bullet["y"])
+            if collision_bullet_invader:
+                invader_sound = mixer.Sound('sound/hit.wav')
+                invader_sound.play()
+                bullets.remove(bullet)
+                bullet_y = 526
+                bullet_visible = False
+                score += 10
+                invader_x[i] = random.randint(0, 726)
+                invader_y[i] = random.randint(20, 200)
+                break
 
         invader(invader_x[i], invader_y[i], i)
+
+    for bullet in bullets:
+        bullet["y"] += bullet["speed"]
+        screen.blit(bullet_img, (bullet["x"] + 16, bullet["y"] + 10))
+        if bullet["y"] < 0:
+            bullets.remove(bullet)
 
     if bullet_y <= 64:
         bullet_y = 526
