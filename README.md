@@ -2,18 +2,26 @@
 <b>Space Invaders</b> game created with <b>Python</b>. 
 <br>
 <br>
-
-| [📖 Features](#features) | [:camera: Screenshots](#screenshots) | [🔖 License](#license) |
-|  -------- | ----------- | ----------- |
-
+Destroy the 👾 before they reach the Earth!
+<br>
+<br>
+Move the 🚀 with the arrow keys and shot your enemies with <kbd>Space</kbd>
+<br>
+<br>
+Every 👾 eliminated gives you 10 points!
+<br>
 <br>
 
-## Features
+| [:camera: Screenshots](#screenshots) | [🔖 License](#license) |
+| ----------- | ----------- |
 
-* **A:** A
 <br>
 
 ## Screenshots
+
+<img src="images/image1.png">
+
+<img src="images/image2.png">
 
 ## License
 
