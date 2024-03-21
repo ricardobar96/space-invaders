@@ -26,7 +26,7 @@ invader_x = []
 invader_y = []
 invader_x_change = []
 invader_y_change = []
-number_invaders = 10
+number_invaders = 9
 
 for i in range(number_invaders):
     invader_img.append(pygame.image.load('images/invader.png'))
