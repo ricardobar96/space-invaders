@@ -40,7 +40,7 @@ bullet_img = pygame.image.load('images/bullet.png')
 bullet_x = 0
 bullet_y = 526
 bullet_x_change = 0
-bullet_y_change = 1
+bullet_y_change = 3
 bullet_visible = False
 
 score = 0
@@ -67,7 +67,7 @@ def invader(x, y, inv):
 def shoot(x, y):
     global bullet_visible
     bullet_visible = True
-    screen.blit(bullet_img, (x + 14, y + 10))
+    screen.blit(bullet_img, (x + 16, y + 10))
 
 def hit(x_1, x_2, y_1, y_2):
     distance = math.sqrt(math.pow(x_1 - x_2, 2) + math.pow(y_2 - y_1, 2))
@@ -116,7 +116,7 @@ while running:
 
     for i in range(number_invaders):
 
-        if invader_y[i] > 500:
+        if invader_y[i] > 400:
             for e in range(number_invaders):
                 invader_y[e] = 1000
             end_text()
